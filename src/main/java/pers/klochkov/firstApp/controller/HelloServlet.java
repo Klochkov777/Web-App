@@ -1,4 +1,4 @@
-package pers.klochkov.firstApp;
+package pers.klochkov.firstApp.controller;
 
 
 import javax.servlet.ServletContextEvent;
@@ -35,7 +35,7 @@ public class HelloServlet extends HttpServlet {
         if (map.containsKey(name)){
 //            PrintWriter writer = resp.getWriter();
 //            writer.println("Vova");
-            req.getRequestDispatcher("./inner.jsp").forward(req, resp);
+            req.getRequestDispatcher("./view/inner.jsp").forward(req, resp);
         }else resp.sendError(410);
 
     }

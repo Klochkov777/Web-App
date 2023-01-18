@@ -15,7 +15,7 @@
 <div>       <!-- content -->
     <div>    <!-- buttons holder -->
         <br>
-        <button onclick="location.href='/addUser'">getListUsers</button>
+        <button onclick="location.href='/getList'">getListUsers</button>
         <br>
         <br>
         <button onclick="location.href='/'">Logout</button>
