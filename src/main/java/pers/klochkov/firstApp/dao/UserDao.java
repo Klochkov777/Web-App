@@ -20,24 +20,29 @@ public class UserDao {
                 localInstance = instance;
                 if (localInstance == null) {
                     instance = localInstance = new UserDao();
-                    instance.listUser.add(new User("vova","email","123", 1l));
                 }
             }
         }
         return localInstance;
     }
 
-    public User createUser() {
-         return null;
+    public User createUser(String name, String login, String password) {
+        long id = listUser.size() + 1;
+        User user = new User(name, login, password, id);
+        listUser.add(user);
+         return user;
     }
-    public User readUser() {
-        return null;
+    public User readUser(String login) {
+        User user = listUser.stream().filter(user1 -> user1.getLogin().equals(login)).findFirst().get();
+        return user;
     }
     public User updateUser() {
         return null;
     }
-    public User deleteUser() {
-        return null;
+    public User deleteUser(String login) {
+        User user = listUser.stream().filter(user1 -> user1.getLogin().equals(login)).findFirst().get();
+        listUser.remove(user);
+        return user;
     }
 
     public List<User> getListUser() {
