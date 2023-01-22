@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Optional;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -23,14 +23,14 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String password = req.getParameter("password");
         String login = req.getParameter("login");
-        User user = usersService.getUserByLoginAndPassword(login, password);
-        System.out.println(user);
-        if (user != null) {
+        Optional<User> optionalUser = usersService.getUserByLoginAndPassword(login, password);
+        if (optionalUser.isPresent()) {
             HttpSession session = req.getSession();
-            session.setAttribute("user", user);
+            session.setAttribute("user", optionalUser.get());
             req.getRequestDispatcher("/home").forward(req, resp);
-        } else resp.sendError(401, "You are not registered");
-
+        } else {
+            sendErrorWrongEnterData(login, resp);
+        }
     }
 
     @Override
@@ -42,5 +42,11 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.service(req, resp);
+    }
+
+    private void sendErrorWrongEnterData(String login, HttpServletResponse response) throws IOException {
+        if (!reviserData.isContainSameLogin(login)){
+            response.sendError(401, "You are not registered");}
+        else response.sendError(401, "Your password is wrong");
     }
 }

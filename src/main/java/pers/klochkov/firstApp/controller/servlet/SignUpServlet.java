@@ -30,15 +30,19 @@ public class SignUpServlet extends HttpServlet {
         String name = req.getParameter("name");
         boolean isValidDataSignUp = reviserData.isValidDataSignUp(name, password, login);
         if (!isValidDataSignUp) {
-            req.setAttribute("isValidData", isValidDataSignUp);
+            req.setAttribute("isValidData", false);
             req.getRequestDispatcher("/signUp.jsp").forward(req, resp);
         }
         else {
-            User user = UserDao.getUserDao().createUser(name, login, password);
-            if (user == null) {
-                resp.sendError(500, "User have not been created");
-            }
-            resp.sendRedirect("/home");
+            createUser(name, password, login, resp);
         }
+    }
+
+    private void createUser(String name, String password, String login, HttpServletResponse resp) throws IOException {
+        User user = UserDao.getUserDao().createUser(name, login, password);
+        if (user == null) {
+            resp.sendError(500, "User have not been created");
+        }
+        resp.sendRedirect("/home");
     }
 }

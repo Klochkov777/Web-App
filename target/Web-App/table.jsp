@@ -1,5 +1,7 @@
+<%--@elvariable id="users" type="List<UserDto>"--%>
 <%@ page import="pers.klochkov.firstApp.model.User" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="pers.klochkov.firstApp.dto.UserDto" %><%--
   Created by IntelliJ IDEA.
   User: vladimir
   Date: 21.01.2023
@@ -20,7 +22,7 @@
             <td>name</td>
         </tr>
 
-        <%List<User> userList = (List<User>) request.getAttribute("users");%>
+        <%List<UserDto> userList = (List<UserDto>) request.getAttribute("users");%>
 
         <%
             for (int i = 0; i < userList.size(); i++) {%>
@@ -32,10 +34,16 @@
         <%}%>
 
     </table>
+    <br>
+    <br>
+    <br>
+    <form action="/logout" method="post" class="form-outline mb-4">
+        <input class="btn btn-primary btn-lg btn-block" type="submit" value="Logout">
+    </form>
 </div>
 
-<p>Name: ${name}</p>
-<p>Age: ${age}</p>
+<p>Name: ${users}</p>
+
 
 
 

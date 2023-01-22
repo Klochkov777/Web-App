@@ -1,7 +1,9 @@
 package pers.klochkov.firstApp.controller.servlet;
 
 import pers.klochkov.firstApp.dao.UserDao;
+import pers.klochkov.firstApp.dto.UserDto;
 import pers.klochkov.firstApp.model.User;
+import pers.klochkov.firstApp.service.UsersService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,11 +15,14 @@ import java.util.List;
 
 @WebServlet(value = "/table")
 public class TableServlet extends HttpServlet {
+
+    UsersService usersService = new UsersService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("entered");
-        List<User> list = UserDao.getUserDao().getListUser();
-        req.setAttribute("users", list);
+        List<UserDto> listUserDto = usersService.getListUsersDto();
+        req.setAttribute("users", listUserDto);
         req.getRequestDispatcher("/table.jsp").forward(req, resp);
 
     }

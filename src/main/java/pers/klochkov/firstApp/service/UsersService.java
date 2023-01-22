@@ -20,10 +20,10 @@ public class UsersService {
         return UserDao.getUserDao().getListUser().stream().map(user -> new UserDto(user.getLogin(), user.getName())).toList();
     }
 
-    public User getUserByLoginAndPassword(String login, String password) {
-       Optional<User> optionalUser = UserDao.getUserDao().getListUser().stream()
+    public Optional<User> getUserByLoginAndPassword(String login, String password) {
+        return UserDao.getUserDao().getListUser().stream()
                 .filter(user1 -> (user1.getLogin().equals(login) && user1.getPassword().equals(password))).findFirst();
-        return optionalUser.orElse(null);
+
     }
 
 
