@@ -20,7 +20,7 @@
                     <div class="card-body p-5 text-center">
 
                         <h3 class="mb-5">Sign up <br> <%if (request.getAttribute("isValidData") != null && !(boolean)request.getAttribute("isValidData")){%>
-                            <%="You did not enter all fields or same login have been created yet"%>
+                            <%="You did not enter all fields or same login has already been created"%>
                             <br>
                             <%= "Enter all fields. If reason is not in that try to change login"%>
                             <%}%></h3>   <%--!!!!!!!!!!!!!!!!!!!!!!!!!--%>

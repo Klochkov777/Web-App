@@ -44,34 +44,6 @@
 
 <p>Name: ${users}</p>
 
-
-
-
-
-
 </body>
 </html>
 
-
-<%--
-<table class="table">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">name</th>
-        <th scope="col">loin</th>
-
-    </tr>
-    </thead>
-    <tbody>
-    <%List<User> userList = (List<User>) request.getAttribute("users");%>
-
-    <%
-        for (int i = 0; i < userList.size(); i++) {%>
-    <tr>
-        <td><%=userList.get(i).getLogin()%></td>
-        <td><%=userList.get(i).getName()%></td>
-
-    </tr>
-    <%}%>
-    </tbody>
-</table>--%>

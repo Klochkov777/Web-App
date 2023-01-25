@@ -8,10 +8,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter("/*")
-public class Filter implements javax.servlet.Filter {
+public class MyFilter implements Filter {
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override
@@ -30,12 +29,11 @@ public class Filter implements javax.servlet.Filter {
 
         if (isLogged || isLoginUri || isSignUpURI) {
             filterChain.doFilter(servletRequest, servletResponse);
-        }else {;
-            response.sendRedirect(pathLoginURI);}
+        }else {
+            response.sendRedirect(pathLoginURI); }
     }
 
     @Override
     public void destroy() {
-
     }
 }

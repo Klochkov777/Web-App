@@ -42,8 +42,6 @@
     </form>
 </div>
 
-<p>Name: ${users}</p>
-
 </body>
 </html>
 
